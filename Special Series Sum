@@ -1,0 +1,32 @@
+// { Driver Code Starts
+//Initial Template for Java
+import java.util.*;
+import java.io.*;
+class GFG {
+    public static void main(String args[]) throws IOException {
+        BufferedReader read =
+            new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(read.readLine());
+        while (t-- > 0) {
+            long n = Integer.parseInt(read.readLine());
+            Solution ob = new Solution();
+
+            System.out.println(ob.sumOfTheSeries(n));
+        }
+    }
+}// } Driver Code Ends
+
+
+//User function Template for Java
+class Solution {
+    static long sumOfTheSeries(long n){
+        // code here
+        int out=0;
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=i;j++){
+                out =out+j;
+            }
+        }
+        return out;
+    }
+}
