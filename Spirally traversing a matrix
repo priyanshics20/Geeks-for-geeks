@@ -1,0 +1,83 @@
+//{ Driver Code Starts
+import java.io.*;
+import java.util.*;
+class GFG
+{
+    public static void main(String args[])throws IOException
+    {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        
+        while(t-- > 0)
+        {
+            int r = sc.nextInt();
+            int c = sc.nextInt();
+            
+            int matrix[][] = new int[r][c];
+            
+            for(int i = 0; i < r; i++)
+            {
+                for(int j = 0; j < c; j++)
+                 matrix[i][j] = sc.nextInt();
+            }
+            Solution ob = new Solution();
+            ArrayList<Integer> ans = ob.spirallyTraverse(matrix, r, c);
+            for (Integer val: ans) 
+                System.out.print(val+" "); 
+            System.out.println();
+        }
+    }
+}
+// } Driver Code Ends
+
+
+class Solution
+{
+    //Function to return a list of integers denoting spiral traversal of matrix.
+    static ArrayList<Integer> spirallyTraverse(int matrix[][], int r, int c)
+    {
+        // code here 
+        ArrayList<Integer> al = new ArrayList<Integer>();
+        
+        int startrow=0 , endrow=r-1;
+        int startcol=0 , endcol=c-1;
+        
+        while(startrow<=endrow && startcol<=endcol){
+            
+            //printing first row left to right (1,2,3,4)
+            for(int i=startcol;i<=endcol;i++){
+                al.add(matrix[startrow][i]);
+            }
+            startrow++;
+            
+            //printing end column from top to bottom (8,12)
+            for(int i=startrow;i<=endrow;i++){
+                al.add(matrix[i][endcol]);
+            }
+            endcol--;
+            
+            //printing last row (45,0,9)
+            if(startrow<=endrow){
+               for(int i=endcol;i>=startcol;i--){
+                   al.add(matrix[endrow][i]);
+               } 
+               endrow--;
+            }
+            
+            //printing first column (5)
+            if(startcol<=endcol){
+                for(int i=endrow;i>=startrow;i--){
+                    al.add(matrix[i][startcol]);
+                }
+                startcol++;
+            }
+        }
+        return al;
+    }
+}
+
+//         l        r
+//   t    {1, 2, 3, 4}
+//        {5, 6, 7, 8}
+//   b    {9, 0, 45, 12}
+
